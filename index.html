@@ -70,7 +70,38 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
-    alert('hello 雯雯！！！');
+
+     var texts = 0;
+    jQuery(document).ready(function($) {
+        $("body").click(function(e) {
+            var array = new Array("欢迎来到硕硕❤雯雯之家", "硕硕爱雯雯", "小雯子之家", "♪(* ´з)(ε｀ *)啵~♪", "永远爱小雯子", "快来亲硕硕", "(* ⁰̷̴͈꒨⁰̷̴͈)=͟͟͞͞➳", "(∗ᵒ̶̶̷̀ω˂̶́∗)੭₎₎̊₊♡", "我的小雯子公主", "我爱小雯子", "爱惨小雯子了", );
+            //创建要显示的文字
+            var love = $("<span></span>").text(array[texts]);
+            texts = (texts + 1) % array.length;
+            //获取鼠标点击坐标
+            var x = e.pageX,
+                y = e.pageY;
+            love.css({
+                "z-index": Infinity,
+                "top": y - 15,
+                "left": x,
+                "position": "absolute",
+                "font-weight": "bold",
+                "font-size": "2em",
+                //随机获取字体颜色
+                "color": "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+            });
+            $("body").append(love);
+            love.animate({
+                    "top": y - 180,
+                    "opacity": 0
+                },
+                3500,
+                function() {
+                    love.remove();
+                });
+        });
+    });
 </script>
 
 </html>
